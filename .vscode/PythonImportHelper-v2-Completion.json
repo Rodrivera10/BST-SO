@@ -1,0 +1,218 @@
+[
+    {
+        "label": "random",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "random",
+        "description": "random",
+        "detail": "random",
+        "documentation": {}
+    },
+    {
+        "label": "matplotlib.pyplot",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "matplotlib.pyplot",
+        "description": "matplotlib.pyplot",
+        "detail": "matplotlib.pyplot",
+        "documentation": {}
+    },
+    {
+        "label": "BST",
+        "importPath": "trees.bst",
+        "description": "trees.bst",
+        "isExtraImport": true,
+        "detail": "trees.bst",
+        "documentation": {}
+    },
+    {
+        "label": "SplayTree",
+        "importPath": "trees.splay",
+        "description": "trees.splay",
+        "isExtraImport": true,
+        "detail": "trees.splay",
+        "documentation": {}
+    },
+    {
+        "label": "RedBlackTree",
+        "importPath": "trees.red_black",
+        "description": "trees.red_black",
+        "isExtraImport": true,
+        "detail": "trees.red_black",
+        "documentation": {}
+    },
+    {
+        "label": "generate_random",
+        "importPath": "utils.generator",
+        "description": "utils.generator",
+        "isExtraImport": true,
+        "detail": "utils.generator",
+        "documentation": {}
+    },
+    {
+        "label": "generate_sorted",
+        "importPath": "utils.generator",
+        "description": "utils.generator",
+        "isExtraImport": true,
+        "detail": "utils.generator",
+        "documentation": {}
+    },
+    {
+        "label": "average",
+        "importPath": "utils.metrics",
+        "description": "utils.metrics",
+        "isExtraImport": true,
+        "detail": "utils.metrics",
+        "documentation": {}
+    },
+    {
+        "label": "plot_scenario_A",
+        "importPath": "utils.visualization",
+        "description": "utils.visualization",
+        "isExtraImport": true,
+        "detail": "utils.visualization",
+        "documentation": {}
+    },
+    {
+        "label": "plot_scenario_B",
+        "importPath": "utils.visualization",
+        "description": "utils.visualization",
+        "isExtraImport": true,
+        "detail": "utils.visualization",
+        "documentation": {}
+    },
+    {
+        "label": "plot_scenario_C",
+        "importPath": "utils.visualization",
+        "description": "utils.visualization",
+        "isExtraImport": true,
+        "detail": "utils.visualization",
+        "documentation": {}
+    },
+    {
+        "label": "BST",
+        "kind": 6,
+        "importPath": "src.trees.bst",
+        "description": "src.trees.bst",
+        "peekOfCode": "class BST:\n    def __init__(self):\n        self.root = None\n    def insert(self, key):\n        if not self.root:\n            self.root = Node(key)\n            return\n        current = self.root\n        while True:\n            if key == current.key:",
+        "detail": "src.trees.bst",
+        "documentation": {}
+    },
+    {
+        "label": "Node",
+        "kind": 6,
+        "importPath": "src.trees.node",
+        "description": "src.trees.node",
+        "peekOfCode": "class Node:\n    def __init__(self, key):\n        self.key = key\n        self.left = None\n        self.right = None\n        self.parent = None",
+        "detail": "src.trees.node",
+        "documentation": {}
+    },
+    {
+        "label": "RedBlackTree",
+        "kind": 6,
+        "importPath": "src.trees.red_black",
+        "description": "src.trees.red_black",
+        "peekOfCode": "class RedBlackTree:\n    def __init__(self):\n        self.NIL = Node(None)\n        self.NIL.color = \"BLACK\"\n        self.root = self.NIL\n    def left_rotate(self, x):\n        y = x.right\n        x.right = y.left\n        if y.left != self.NIL:\n            y.left.parent = x",
+        "detail": "src.trees.red_black",
+        "documentation": {}
+    },
+    {
+        "label": "SplayTree",
+        "kind": 6,
+        "importPath": "src.trees.splay",
+        "description": "src.trees.splay",
+        "peekOfCode": "class SplayTree:\n    def __init__(self):\n        self.root = None\n    def rotate_left(self, x):\n        y = x.right\n        x.right = y.left\n        if y.left:\n            y.left.parent = x\n        y.parent = x.parent\n        if not x.parent:",
+        "detail": "src.trees.splay",
+        "documentation": {}
+    },
+    {
+        "label": "generate_random",
+        "kind": 2,
+        "importPath": "src.utils.generator",
+        "description": "src.utils.generator",
+        "peekOfCode": "def generate_random(n):\n    return [random.randint(1, 10000) for _ in range(n)]\ndef generate_sorted(n):\n    return list(range(1, n + 1))",
+        "detail": "src.utils.generator",
+        "documentation": {}
+    },
+    {
+        "label": "generate_sorted",
+        "kind": 2,
+        "importPath": "src.utils.generator",
+        "description": "src.utils.generator",
+        "peekOfCode": "def generate_sorted(n):\n    return list(range(1, n + 1))",
+        "detail": "src.utils.generator",
+        "documentation": {}
+    },
+    {
+        "label": "average",
+        "kind": 2,
+        "importPath": "src.utils.metrics",
+        "description": "src.utils.metrics",
+        "peekOfCode": "def average(lst):\n    return sum(lst) / len(lst) if lst else 0",
+        "detail": "src.utils.metrics",
+        "documentation": {}
+    },
+    {
+        "label": "plot_scenario_A",
+        "kind": 2,
+        "importPath": "src.utils.visualization",
+        "description": "src.utils.visualization",
+        "peekOfCode": "def plot_scenario_A(bst, splay, rb):\n    plt.figure()\n    plt.plot(bst, label=\"BST\")\n    plt.plot(splay, label=\"Splay\")\n    plt.plot(rb, label=\"Red-Black\")\n    plt.title(\"Escenario A - Aleatorio\")\n    plt.xlabel(\"Pruebas\")\n    plt.ylabel(\"Iteraciones\")\n    plt.legend()\n    plt.savefig(\"results/scenario_A.png\")",
+        "detail": "src.utils.visualization",
+        "documentation": {}
+    },
+    {
+        "label": "plot_scenario_B",
+        "kind": 2,
+        "importPath": "src.utils.visualization",
+        "description": "src.utils.visualization",
+        "peekOfCode": "def plot_scenario_B(bst, splay, rb):\n    plt.figure()\n    labels = [\"BST\", \"Splay\", \"Red-Black\"]\n    values = [bst, splay, rb]\n    plt.bar(labels, values)\n    plt.title(\"Escenario B - Peor Caso\")\n    plt.ylabel(\"Iteraciones\")\n    plt.savefig(\"results/scenario_B.png\")\n    plt.show()\ndef plot_scenario_C(splay, rb):",
+        "detail": "src.utils.visualization",
+        "documentation": {}
+    },
+    {
+        "label": "plot_scenario_C",
+        "kind": 2,
+        "importPath": "src.utils.visualization",
+        "description": "src.utils.visualization",
+        "peekOfCode": "def plot_scenario_C(splay, rb):\n    plt.figure()\n    plt.plot(splay, label=\"Splay\")\n    plt.plot(rb, label=\"Red-Black\")\n    plt.title(\"Escenario C - Acceso Frecuente\")\n    plt.xlabel(\"Intento\")\n    plt.ylabel(\"Iteraciones\")\n    plt.legend()\n    plt.savefig(\"results/scenario_C.png\")\n    plt.show()",
+        "detail": "src.utils.visualization",
+        "documentation": {}
+    },
+    {
+        "label": "scenario_A",
+        "kind": 2,
+        "importPath": "src.main",
+        "description": "src.main",
+        "peekOfCode": "def scenario_A():\n    print(\"\\n=== ESCENARIO A: Llegada Aleatoria ===\")\n    data = generate_random(1000)\n    bst = BST()\n    splay = SplayTree()\n    rb = RedBlackTree()\n    for x in data:\n        bst.insert(x)\n        splay.insert(x)\n        rb.insert(x)",
+        "detail": "src.main",
+        "documentation": {}
+    },
+    {
+        "label": "scenario_B",
+        "kind": 2,
+        "importPath": "src.main",
+        "description": "src.main",
+        "peekOfCode": "def scenario_B():\n    print(\"\\n=== ESCENARIO B: Peor Caso ===\")\n    data = generate_sorted(1000)\n    bst = BST()\n    splay = SplayTree()\n    rb = RedBlackTree()\n    for x in data:\n        bst.insert(x)\n        splay.insert(x)\n        rb.insert(x)",
+        "detail": "src.main",
+        "documentation": {}
+    },
+    {
+        "label": "scenario_C",
+        "kind": 2,
+        "importPath": "src.main",
+        "description": "src.main",
+        "peekOfCode": "def scenario_C():\n    print(\"\\n=== ESCENARIO C: Acceso Frecuente ===\")\n    data = generate_random(1000)\n    splay = SplayTree()\n    rb = RedBlackTree()\n    for x in data:\n        splay.insert(x)\n        rb.insert(x)\n    target = random.choice(data)\n    print(f\"Proceso elegido: {target}\")",
+        "detail": "src.main",
+        "documentation": {}
+    },
+    {
+        "label": "main",
+        "kind": 2,
+        "importPath": "src.main",
+        "description": "src.main",
+        "peekOfCode": "def main():\n    scenario_A()\n    scenario_B()\n    scenario_C()\nif __name__ == \"__main__\":\n    main()",
+        "detail": "src.main",
+        "documentation": {}
+    }
+]

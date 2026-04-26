@@ -1,27 +1,31 @@
 from .node import Node
 
+
 class BST:
     def __init__(self):
         self.root = None
 
     def insert(self, key):
-        node = Node(key)
         if not self.root:
-            self.root = node
+            self.root = Node(key)
             return
-        
+
         current = self.root
         while True:
-            if key < current.key:
+            if key == current.key:
+                return
+            elif key < current.key:
                 if not current.left:
-                    current.left = node
-                    node.parent = current
+                    new_node = Node(key)
+                    new_node.parent = current
+                    current.left = new_node
                     return
                 current = current.left
             else:
                 if not current.right:
-                    current.right = node
-                    node.parent = current
+                    new_node = Node(key)
+                    new_node.parent = current
+                    current.right = new_node
                     return
                 current = current.right
 

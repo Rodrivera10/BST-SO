@@ -4,6 +4,3 @@ class Node:
         self.left = None
         self.right = None
         self.parent = None
-        
-        # Solo para Red-Black
-        self.color = "RED"
