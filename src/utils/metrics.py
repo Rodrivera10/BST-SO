@@ -1,2 +1,16 @@
 def average(lst):
-    return sum(lst) / len(lst) if lst else 0
+    if not lst:
+        return 0
+    return sum(lst) / len(lst)
+
+
+def min_val(lst):
+    if not lst:
+        return 0
+    return min(lst)
+
+
+def max_val(lst):
+    if not lst:
+        return 0
+    return max(lst)

@@ -74,6 +74,22 @@
         "documentation": {}
     },
     {
+        "label": "min_val",
+        "importPath": "utils.metrics",
+        "description": "utils.metrics",
+        "isExtraImport": true,
+        "detail": "utils.metrics",
+        "documentation": {}
+    },
+    {
+        "label": "max_val",
+        "importPath": "utils.metrics",
+        "description": "utils.metrics",
+        "isExtraImport": true,
+        "detail": "utils.metrics",
+        "documentation": {}
+    },
+    {
         "label": "plot_scenario_A",
         "importPath": "utils.visualization",
         "description": "utils.visualization",
@@ -146,7 +162,7 @@
         "kind": 2,
         "importPath": "src.utils.generator",
         "description": "src.utils.generator",
-        "peekOfCode": "def generate_random(n):\n    return [random.randint(1, 10000) for _ in range(n)]\ndef generate_sorted(n):\n    return list(range(1, n + 1))",
+        "peekOfCode": "def generate_random(n):\n    return random.sample(range(1, n * 10 + 1), n)\ndef generate_sorted(n):\n    return list(range(1, n + 1))",
         "detail": "src.utils.generator",
         "documentation": {}
     },
@@ -164,7 +180,25 @@
         "kind": 2,
         "importPath": "src.utils.metrics",
         "description": "src.utils.metrics",
-        "peekOfCode": "def average(lst):\n    return sum(lst) / len(lst) if lst else 0",
+        "peekOfCode": "def average(lst):\n    if not lst:\n        return 0\n    return sum(lst) / len(lst)\ndef min_val(lst):\n    if not lst:\n        return 0\n    return min(lst)\ndef max_val(lst):\n    if not lst:",
+        "detail": "src.utils.metrics",
+        "documentation": {}
+    },
+    {
+        "label": "min_val",
+        "kind": 2,
+        "importPath": "src.utils.metrics",
+        "description": "src.utils.metrics",
+        "peekOfCode": "def min_val(lst):\n    if not lst:\n        return 0\n    return min(lst)\ndef max_val(lst):\n    if not lst:\n        return 0\n    return max(lst)",
+        "detail": "src.utils.metrics",
+        "documentation": {}
+    },
+    {
+        "label": "max_val",
+        "kind": 2,
+        "importPath": "src.utils.metrics",
+        "description": "src.utils.metrics",
+        "peekOfCode": "def max_val(lst):\n    if not lst:\n        return 0\n    return max(lst)",
         "detail": "src.utils.metrics",
         "documentation": {}
     },
@@ -209,7 +243,7 @@
         "kind": 2,
         "importPath": "src.main",
         "description": "src.main",
-        "peekOfCode": "def scenario_A():\n    print(\"\\n=== ESCENARIO A: Llegada Aleatoria ===\")\n    data = generate_random(1000)\n    bst = BST()\n    splay = SplayTree()\n    rb = RedBlackTree()\n    for x in data:\n        bst.insert(x)\n        splay.insert(x)\n        rb.insert(x)",
+        "peekOfCode": "def scenario_A():\n    print(\"\\nESCENARIO A: Llegada Aleatoria\")\n    data = generate_random(1000)\n    bst = BST()\n    splay = SplayTree()\n    rb = RedBlackTree()\n    for x in data:\n        bst.insert(x)\n        splay.insert(x)\n        rb.insert(x)",
         "detail": "src.main",
         "documentation": {}
     },
@@ -218,7 +252,7 @@
         "kind": 2,
         "importPath": "src.main",
         "description": "src.main",
-        "peekOfCode": "def scenario_B():\n    print(\"\\n=== ESCENARIO B: Peor Caso (Insercion Secuencial) ===\")\n    data = generate_sorted(1000)\n    bst = BST()\n    splay = SplayTree()\n    rb = RedBlackTree()\n    for x in data:\n        bst.insert(x)\n        splay.insert(x)\n        rb.insert(x)",
+        "peekOfCode": "def scenario_B():\n    print(\"\\nESCENARIO B: Peor Caso (Insercion Secuencial)\")\n    data = generate_sorted(1000)\n    bst = BST()\n    splay = SplayTree()\n    rb = RedBlackTree()\n    for x in data:\n        bst.insert(x)\n        splay.insert(x)\n        rb.insert(x)",
         "detail": "src.main",
         "documentation": {}
     },
@@ -227,7 +261,7 @@
         "kind": 2,
         "importPath": "src.main",
         "description": "src.main",
-        "peekOfCode": "def scenario_C():\n    print(\"\\n=== ESCENARIO C: Acceso Frecuente ===\")\n    data = generate_random(1000)\n    splay = SplayTree()\n    rb = RedBlackTree()\n    for x in data:\n        splay.insert(x)\n        rb.insert(x)\n    target = random.choice(data)\n    print(f\"Proceso buscado 50 veces: {target}\")",
+        "peekOfCode": "def scenario_C():\n    print(\"\\nESCENARIO C: Acceso Frecuente\")\n    data = generate_random(1000)\n    splay = SplayTree()\n    rb = RedBlackTree()\n    for x in data:\n        splay.insert(x)\n        rb.insert(x)\n    target = random.choice(data)\n    print(f\"Proceso buscado 50 veces: {target}\")",
         "detail": "src.main",
         "documentation": {}
     },
