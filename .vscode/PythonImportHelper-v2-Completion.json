@@ -18,11 +18,12 @@
         "documentation": {}
     },
     {
-        "label": "Digraph",
-        "importPath": "graphviz",
-        "description": "graphviz",
+        "label": "matplotlib.patches",
+        "kind": 6,
         "isExtraImport": true,
-        "detail": "graphviz",
+        "importPath": "matplotlib.patches",
+        "description": "matplotlib.patches",
+        "detail": "matplotlib.patches",
         "documentation": {}
     },
     {
@@ -107,6 +108,14 @@
     },
     {
         "label": "plot_scenario_C",
+        "importPath": "utils.visualization",
+        "description": "utils.visualization",
+        "isExtraImport": true,
+        "detail": "utils.visualization",
+        "documentation": {}
+    },
+    {
+        "label": "plot_summary",
         "importPath": "utils.visualization",
         "description": "utils.visualization",
         "isExtraImport": true,
@@ -207,7 +216,7 @@
         "kind": 2,
         "importPath": "src.utils.visualization",
         "description": "src.utils.visualization",
-        "peekOfCode": "def visualize_bst(tree, filename, title, is_rb=False):\n    dot = Digraph(comment=title)\n    dot.attr(rankdir=\"TB\")\n    def add_nodes(node, depth=0):\n        if node is None:\n            return\n        if is_rb and node.key is None:\n            return\n        if depth > 5:\n            return",
+        "peekOfCode": "def visualize_bst(tree, filename, title, is_rb=False):\n    positions = {}\n    edges = []\n    _get_positions(tree.root, 0, 0, 8, positions, edges, 0, 5, is_rb)\n    fig, ax = plt.subplots(figsize=(18, 8))\n    ax.set_title(title + \" (primeros 6 niveles)\", fontsize=13)\n    ax.axis(\"off\")\n    for x1, y1, x2, y2 in edges:\n        ax.plot([x1, x2], [y1, y2], \"k-\", linewidth=0.8, zorder=1)\n    for node_id, (x, y, key, color) in positions.items():",
         "detail": "src.utils.visualization",
         "documentation": {}
     },
@@ -239,11 +248,20 @@
         "documentation": {}
     },
     {
+        "label": "plot_summary",
+        "kind": 2,
+        "importPath": "src.utils.visualization",
+        "description": "src.utils.visualization",
+        "peekOfCode": "def plot_summary(promedios):\n    escenarios = [\n        \"Escenario A\\n(Aleatorio)\", \"Escenario B\\n(Secuencial)\", \"Escenario C\\n(Frecuente)\"]\n    bst_vals = [promedios[\"A\"][\"bst\"],   promedios[\"B\"]\n                [\"bst\"],   promedios[\"C\"][\"bst\"]]\n    splay_vals = [promedios[\"A\"][\"splay\"], promedios[\"B\"]\n                  [\"splay\"], promedios[\"C\"][\"splay\"]]\n    rb_vals = [promedios[\"A\"][\"rb\"],    promedios[\"B\"]\n               [\"rb\"],    promedios[\"C\"][\"rb\"]]\n    x = range(len(escenarios))",
+        "detail": "src.utils.visualization",
+        "documentation": {}
+    },
+    {
         "label": "scenario_A",
         "kind": 2,
         "importPath": "src.main",
         "description": "src.main",
-        "peekOfCode": "def scenario_A():\n    print(\"\\nESCENARIO A: Llegada Aleatoria\")\n    data = generate_random(1000)\n    bst = BST()\n    splay = SplayTree()\n    rb = RedBlackTree()\n    for x in data:\n        bst.insert(x)\n        splay.insert(x)\n        rb.insert(x)",
+        "peekOfCode": "def scenario_A():\n    print(\"\\n=== ESCENARIO A: Llegada Aleatoria ===\")\n    data = generate_random(1000)\n    bst = BST()\n    splay = SplayTree()\n    rb = RedBlackTree()\n    for x in data:\n        bst.insert(x)\n        splay.insert(x)\n        rb.insert(x)",
         "detail": "src.main",
         "documentation": {}
     },
@@ -252,7 +270,7 @@
         "kind": 2,
         "importPath": "src.main",
         "description": "src.main",
-        "peekOfCode": "def scenario_B():\n    print(\"\\nESCENARIO B: Peor Caso (Insercion Secuencial)\")\n    data = generate_sorted(1000)\n    bst = BST()\n    splay = SplayTree()\n    rb = RedBlackTree()\n    for x in data:\n        bst.insert(x)\n        splay.insert(x)\n        rb.insert(x)",
+        "peekOfCode": "def scenario_B():\n    print(\"\\n=== ESCENARIO B: Peor Caso (Insercion Secuencial) ===\")\n    data = generate_sorted(1000)\n    bst = BST()\n    splay = SplayTree()\n    rb = RedBlackTree()\n    for x in data:\n        bst.insert(x)\n        splay.insert(x)\n        rb.insert(x)",
         "detail": "src.main",
         "documentation": {}
     },
@@ -261,7 +279,7 @@
         "kind": 2,
         "importPath": "src.main",
         "description": "src.main",
-        "peekOfCode": "def scenario_C():\n    print(\"\\nESCENARIO C: Acceso Frecuente\")\n    data = generate_random(1000)\n    splay = SplayTree()\n    rb = RedBlackTree()\n    for x in data:\n        splay.insert(x)\n        rb.insert(x)\n    target = random.choice(data)\n    print(f\"Proceso buscado 50 veces: {target}\")",
+        "peekOfCode": "def scenario_C():\n    print(\"\\n=== ESCENARIO C: Acceso Frecuente ===\")\n    data = generate_random(1000)\n    splay = SplayTree()\n    rb = RedBlackTree()\n    for x in data:\n        splay.insert(x)\n        rb.insert(x)\n    target = random.choice(data)\n    print(f\"Proceso buscado 50 veces: {target}\")",
         "detail": "src.main",
         "documentation": {}
     },
@@ -270,7 +288,7 @@
         "kind": 2,
         "importPath": "src.main",
         "description": "src.main",
-        "peekOfCode": "def main():\n    scenario_A()\n    scenario_B()\n    scenario_C()\nif __name__ == \"__main__\":\n    main()",
+        "peekOfCode": "def main():\n    print(\"Iniciando simulacion de arboles BST, Splay y Red-Black Tree\\n\")\n    promedios = {\n        \"A\": {\"bst\": 0, \"splay\": 0, \"rb\": 0},\n        \"B\": {\"bst\": 0, \"splay\": 0, \"rb\": 0},\n        \"C\": {\"bst\": 0, \"splay\": 0, \"rb\": 0},\n    }\n    try:\n        prom_bst, prom_splay, prom_rb = scenario_A()\n        promedios[\"A\"] = {\"bst\": prom_bst, \"splay\": prom_splay, \"rb\": prom_rb}",
         "detail": "src.main",
         "documentation": {}
     }
