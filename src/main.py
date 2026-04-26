@@ -9,11 +9,11 @@ from utils.metrics import average
 from utils.visualization import (
     plot_scenario_A,
     plot_scenario_B,
-    plot_scenario_C
+    plot_scenario_C,
+    visualize_bst
 )
 
 
-# ---------------- ESCENARIO A ---------------- #
 def scenario_A():
     print("\n=== ESCENARIO A: Llegada Aleatoria ===")
 
@@ -28,6 +28,9 @@ def scenario_A():
         splay.insert(x)
         rb.insert(x)
 
+    visualize_bst(bst, "bst_scenario_A", "BST Escenario A")
+    visualize_bst(rb, "rb_scenario_A", "Red-Black Escenario A", is_rb=True)
+
     test = random.sample(data, 100)
 
     bst_steps, splay_steps, rb_steps = [], [], []
@@ -37,16 +40,15 @@ def scenario_A():
         splay_steps.append(splay.search(x)[1])
         rb_steps.append(rb.search(x)[1])
 
-    print(f"BST promedio: {average(bst_steps):.2f}")
-    print(f"Splay promedio: {average(splay_steps):.2f}")
+    print(f"BST promedio:       {average(bst_steps):.2f}")
+    print(f"Splay promedio:     {average(splay_steps):.2f}")
     print(f"Red-Black promedio: {average(rb_steps):.2f}")
 
     plot_scenario_A(bst_steps, splay_steps, rb_steps)
 
 
-# ---------------- ESCENARIO B ---------------- #
 def scenario_B():
-    print("\n=== ESCENARIO B: Peor Caso ===")
+    print("\n=== ESCENARIO B: Peor Caso (Insercion Secuencial) ===")
 
     data = generate_sorted(1000)
 
@@ -59,18 +61,19 @@ def scenario_B():
         splay.insert(x)
         rb.insert(x)
 
+    visualize_bst(bst, "bst_scenario_B", "BST Escenario B")
+
     bst_result = bst.search(1000)[1]
     splay_result = splay.search(1000)[1]
     rb_result = rb.search(1000)[1]
 
-    print(f"BST iteraciones: {bst_result}")
-    print(f"Splay iteraciones: {splay_result}")
+    print(f"BST iteraciones:       {bst_result}")
+    print(f"Splay iteraciones:     {splay_result}")
     print(f"Red-Black iteraciones: {rb_result}")
 
     plot_scenario_B(bst_result, splay_result, rb_result)
 
 
-# ---------------- ESCENARIO C ---------------- #
 def scenario_C():
     print("\n=== ESCENARIO C: Acceso Frecuente ===")
 
@@ -84,7 +87,7 @@ def scenario_C():
         rb.insert(x)
 
     target = random.choice(data)
-    print(f"Proceso elegido: {target}")
+    print(f"Proceso buscado 50 veces: {target}")
 
     splay_steps, rb_steps = [], []
 
@@ -92,13 +95,12 @@ def scenario_C():
         splay_steps.append(splay.search(target)[1])
         rb_steps.append(rb.search(target)[1])
 
-    print(f"Splay promedio: {average(splay_steps):.2f}")
+    print(f"Splay promedio:     {average(splay_steps):.2f}")
     print(f"Red-Black promedio: {average(rb_steps):.2f}")
 
     plot_scenario_C(splay_steps, rb_steps)
 
 
-# ---------------- MAIN ---------------- #
 def main():
     scenario_A()
     scenario_B()

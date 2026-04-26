@@ -18,6 +18,14 @@
         "documentation": {}
     },
     {
+        "label": "Digraph",
+        "importPath": "graphviz",
+        "description": "graphviz",
+        "isExtraImport": true,
+        "detail": "graphviz",
+        "documentation": {}
+    },
+    {
         "label": "BST",
         "importPath": "trees.bst",
         "description": "trees.bst",
@@ -90,6 +98,14 @@
         "documentation": {}
     },
     {
+        "label": "visualize_bst",
+        "importPath": "utils.visualization",
+        "description": "utils.visualization",
+        "isExtraImport": true,
+        "detail": "utils.visualization",
+        "documentation": {}
+    },
+    {
         "label": "BST",
         "kind": 6,
         "importPath": "src.trees.bst",
@@ -153,11 +169,20 @@
         "documentation": {}
     },
     {
+        "label": "visualize_bst",
+        "kind": 2,
+        "importPath": "src.utils.visualization",
+        "description": "src.utils.visualization",
+        "peekOfCode": "def visualize_bst(tree, filename, title, is_rb=False):\n    dot = Digraph(comment=title)\n    dot.attr(rankdir=\"TB\")\n    def add_nodes(node, depth=0):\n        if node is None:\n            return\n        if is_rb and node.key is None:\n            return\n        if depth > 5:\n            return",
+        "detail": "src.utils.visualization",
+        "documentation": {}
+    },
+    {
         "label": "plot_scenario_A",
         "kind": 2,
         "importPath": "src.utils.visualization",
         "description": "src.utils.visualization",
-        "peekOfCode": "def plot_scenario_A(bst, splay, rb):\n    plt.figure()\n    plt.plot(bst, label=\"BST\")\n    plt.plot(splay, label=\"Splay\")\n    plt.plot(rb, label=\"Red-Black\")\n    plt.title(\"Escenario A - Aleatorio\")\n    plt.xlabel(\"Pruebas\")\n    plt.ylabel(\"Iteraciones\")\n    plt.legend()\n    plt.savefig(\"results/scenario_A.png\")",
+        "peekOfCode": "def plot_scenario_A(bst, splay, rb):\n    plt.figure()\n    plt.plot(bst, label=\"BST\")\n    plt.plot(splay, label=\"Splay\")\n    plt.plot(rb, label=\"Red-Black\")\n    plt.title(\"Escenario A - Llegada Aleatoria\")\n    plt.xlabel(\"Busqueda (1-100)\")\n    plt.ylabel(\"Iteraciones\")\n    plt.legend()\n    plt.savefig(\"results/scenario_A.png\")",
         "detail": "src.utils.visualization",
         "documentation": {}
     },
@@ -166,7 +191,7 @@
         "kind": 2,
         "importPath": "src.utils.visualization",
         "description": "src.utils.visualization",
-        "peekOfCode": "def plot_scenario_B(bst, splay, rb):\n    plt.figure()\n    labels = [\"BST\", \"Splay\", \"Red-Black\"]\n    values = [bst, splay, rb]\n    plt.bar(labels, values)\n    plt.title(\"Escenario B - Peor Caso\")\n    plt.ylabel(\"Iteraciones\")\n    plt.savefig(\"results/scenario_B.png\")\n    plt.show()\ndef plot_scenario_C(splay, rb):",
+        "peekOfCode": "def plot_scenario_B(bst, splay, rb):\n    plt.figure()\n    labels = [\"BST\", \"Splay\", \"Red-Black\"]\n    values = [bst, splay, rb]\n    bars = plt.bar(labels, values, color=[\"steelblue\", \"orange\", \"green\"])\n    for bar, val in zip(bars, values):\n        plt.text(bar.get_x() + bar.get_width() / 2, bar.get_height() + 5,\n                 str(val), ha=\"center\", va=\"bottom\")\n    plt.title(\"Escenario B - Peor Caso (Insercion Secuencial)\")\n    plt.ylabel(\"Iteraciones para encontrar proceso 1000\")",
         "detail": "src.utils.visualization",
         "documentation": {}
     },
@@ -175,7 +200,7 @@
         "kind": 2,
         "importPath": "src.utils.visualization",
         "description": "src.utils.visualization",
-        "peekOfCode": "def plot_scenario_C(splay, rb):\n    plt.figure()\n    plt.plot(splay, label=\"Splay\")\n    plt.plot(rb, label=\"Red-Black\")\n    plt.title(\"Escenario C - Acceso Frecuente\")\n    plt.xlabel(\"Intento\")\n    plt.ylabel(\"Iteraciones\")\n    plt.legend()\n    plt.savefig(\"results/scenario_C.png\")\n    plt.show()",
+        "peekOfCode": "def plot_scenario_C(splay, rb):\n    plt.figure()\n    plt.plot(splay, label=\"Splay\", marker=\"o\")\n    plt.plot(rb, label=\"Red-Black\", marker=\"s\")\n    plt.title(\"Escenario C - Acceso Frecuente al Mismo Proceso\")\n    plt.xlabel(\"Intento (1-50)\")\n    plt.ylabel(\"Iteraciones\")\n    plt.legend()\n    plt.savefig(\"results/scenario_C.png\")\n    plt.close()",
         "detail": "src.utils.visualization",
         "documentation": {}
     },
@@ -193,7 +218,7 @@
         "kind": 2,
         "importPath": "src.main",
         "description": "src.main",
-        "peekOfCode": "def scenario_B():\n    print(\"\\n=== ESCENARIO B: Peor Caso ===\")\n    data = generate_sorted(1000)\n    bst = BST()\n    splay = SplayTree()\n    rb = RedBlackTree()\n    for x in data:\n        bst.insert(x)\n        splay.insert(x)\n        rb.insert(x)",
+        "peekOfCode": "def scenario_B():\n    print(\"\\n=== ESCENARIO B: Peor Caso (Insercion Secuencial) ===\")\n    data = generate_sorted(1000)\n    bst = BST()\n    splay = SplayTree()\n    rb = RedBlackTree()\n    for x in data:\n        bst.insert(x)\n        splay.insert(x)\n        rb.insert(x)",
         "detail": "src.main",
         "documentation": {}
     },
@@ -202,7 +227,7 @@
         "kind": 2,
         "importPath": "src.main",
         "description": "src.main",
-        "peekOfCode": "def scenario_C():\n    print(\"\\n=== ESCENARIO C: Acceso Frecuente ===\")\n    data = generate_random(1000)\n    splay = SplayTree()\n    rb = RedBlackTree()\n    for x in data:\n        splay.insert(x)\n        rb.insert(x)\n    target = random.choice(data)\n    print(f\"Proceso elegido: {target}\")",
+        "peekOfCode": "def scenario_C():\n    print(\"\\n=== ESCENARIO C: Acceso Frecuente ===\")\n    data = generate_random(1000)\n    splay = SplayTree()\n    rb = RedBlackTree()\n    for x in data:\n        splay.insert(x)\n        rb.insert(x)\n    target = random.choice(data)\n    print(f\"Proceso buscado 50 veces: {target}\")",
         "detail": "src.main",
         "documentation": {}
     },
